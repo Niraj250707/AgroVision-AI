@@ -621,13 +621,13 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 
 | Role | Name | GitHub |
 |------|------|--------|
-| 👨‍💻 **Team Lead & Backend** | [Prajapati Nilesh] | [@yourgithub](https://github.com/yourgithub) |
+| 👨‍💻 **Team Lead & Backend** | [Prajapati Nilesh] | [@King Nilesh](https://github.com/NileshHI-coder) |
 | 🎨 **Frontend Lead** | [Name] | [@github](https://github.com/) |
 | 📱 **FullStack Developer** | [Niraj Sharma] | [@github](https://github.com/) |
 | 🤖 **ML/AI Engineer** | [Name] | [@github](https://github.com/) |
 | 📝 **Research & Documentation** | [Name] | [@github](https://github.com/) |
 
-**Mentor:** [Mentor Name] | **Institution:** [Your College Name]
+**Mentor:** [MihirKumar Rabari] | **Institution:** [Madhuben and Bhanubhai Patel Institute of Technology]
 
 </div>
 
