@@ -623,7 +623,7 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 |------|------|--------|
 | 👨‍💻 **Team Lead & Frontend** | [Prajapati Nilesh] | [@King Nilesh](https://github.com/NileshHI-coder) |
 | 🎨 **Backend Lead** | [Lavya Desai] | [@Lavya](https://github.com/lavyadesai2006-commits) |
-| 📱 **FullStack Developer** | [Niraj Sharma] | [@github](https://github.com/) |
+| 📱 **FullStack Developer** | [Niraj Sharma] | [@Niraj250707](https://github.com/Niraj250707) |
 | 🤖 **ML/AI Engineer** | [Yagnika Parmar] | [@Yani1517](https://github.com/Yani1517) |
 | 📊 **Data & Market Analyst** | [Rudra Patel] | [@Rudra]| 
 | 📝 **Research & Documentation** | [Farhan Rana] | [@Farhan](https://github.com/farhan7217) |
