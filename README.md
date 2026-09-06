@@ -621,11 +621,12 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 
 | Role | Name | GitHub |
 |------|------|--------|
-| 👨‍💻 **Team Lead & Backend** | [Prajapati Nilesh] | [@King Nilesh](https://github.com/NileshHI-coder) |
-| 🎨 **Frontend Lead** | [Name] | [@github](https://github.com/) |
+| 👨‍💻 **Team Lead & Frontend** | [Prajapati Nilesh] | [@King Nilesh](https://github.com/NileshHI-coder) |
+| 🎨 **Backend Lead** | [Lavya Desai] | [@Lavya](https://github.com/lavyadesai2006-commits) |
 | 📱 **FullStack Developer** | [Niraj Sharma] | [@github](https://github.com/) |
-| 🤖 **ML/AI Engineer** | [Name] | [@github](https://github.com/) |
-| 📝 **Research & Documentation** | [Name] | [@github](https://github.com/) |
+| 🤖 **ML/AI Engineer** | [Yagnika Parmar] | [@Yani1517](https://github.com/Yani1517) |
+| 📊 **Data & Market Analyst** | [Rudra Patel] | [@Rudra]| 
+| 📝 **Research & Documentation** | [Farhan Rana] | [@Farhan](https://github.com/farhan7217) |
 
 **Mentor:** [MihirKumar Rabari] | **Institution:** [Madhuben and Bhanubhai Patel Institute of Technology]
 
