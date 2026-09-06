@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  /* Deep botanical greens — the sidebar/brand core */
+  --color-canopy-950: #0d2318;
+  --color-canopy-900: #123321;
+  --color-canopy-800: #17422b;
+  --color-canopy-700: #1f5537;
+  --color-canopy-600: #2a6b46;
+  --color-canopy-500: #3a8259;
+
+  /* Warm harvest accent — cotton/wheat gold, used sparingly */
+  --color-harvest-600: #b8792a;
+  --color-harvest-500: #d3922f;
+  --color-harvest-400: #e0aa52;
+  --color-harvest-100: #fbf0dd;
+
+  /* Soil neutrals for text and surfaces */
+  --color-soil-950: #1b1712;
+  --color-soil-800: #372f26;
+  --color-soil-600: #6b6053;
+  --color-soil-400: #a89d8d;
+  --color-soil-200: #e7e1d5;
+  --color-soil-100: #f3efe6;
+  --color-soil-50: #faf8f3;
+
+  /* Signal colors — muted, not neon */
+  --color-signal-good: #2f7a4d;
+  --color-signal-warn: #c17a1f;
+  --color-signal-bad: #b3452f;
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Inter", -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    color: var(--color-soil-950);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-color: var(--color-soil-50);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background-color: var(--color-harvest-100);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-canopy-600);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: var(--color-soil-200); border-radius: 4px; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+}
