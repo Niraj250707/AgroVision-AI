@@ -625,7 +625,7 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 | 🎨 **Backend Lead** | [Lavya Desai] | [@Lavya](https://github.com/lavyadesai2006-commits) |
 | 📱 **FullStack Developer** | [Niraj Sharma] | [@Niraj250707](https://github.com/Niraj250707) |
 | 🤖 **ML/AI Engineer** | [Yagnika Parmar] | [@Yani1517](https://github.com/Yani1517) |
-| 📊 **Data & Market Analyst** | [Rudra Patel] | [@Rudra]| 
+| 📊 **Data & Market Analyst** | [Rudra Patel] | [@Rudra](https://github.com/Rudra2808-wp)| 
 | 📝 **Research & Documentation** | [Farhan Rana] | [@Farhan](https://github.com/farhan7217) |
 
 **Mentor:** [MihirKumar Rabari] | **Institution:** [Madhuben and Bhanubhai Patel Institute of Technology]
