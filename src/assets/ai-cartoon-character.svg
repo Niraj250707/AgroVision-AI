@@ -1,0 +1,35 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EAF7EE"/>
+      <stop offset="1" stop-color="#D9F5DF"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="110" y1="250" x2="400" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E5C45"/>
+      <stop offset="1" stop-color="#0F2D21"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="54" fill="url(#bg)"/>
+  <circle cx="254" cy="208" r="122" fill="#F6D9B3"/>
+  <path d="M168 205C168 128.85 223.85 73 300 73H324C365.421 73 400 107.579 400 149V172C400 183.046 391.046 192 380 192H332C311.013 192 294 209.013 294 230V269H168V205Z" fill="#0F2D21"/>
+  <circle cx="206" cy="208" r="14" fill="#0F2D21"/>
+  <circle cx="306" cy="208" r="14" fill="#0F2D21"/>
+  <path d="M244 258C256.872 273.581 276.852 280.534 298.5 280.5C319.5 280.5 337 274.5 352 259.5" stroke="#D56D5D" stroke-width="14" stroke-linecap="round"/>
+  <path d="M118 248C118 220.386 140.386 198 168 198H178V330C178 346.569 163.569 360 147 360H118V248Z" fill="#E1B567"/>
+  <path d="M392 248C392 220.386 369.614 198 342 198H332V330C332 346.569 346.431 360 363 360H392V248Z" fill="#E1B567"/>
+  <path d="M136 360C136 331.281 159.281 308 188 308H324C352.719 308 376 331.281 376 360V420H136V360Z" fill="url(#shirt)"/>
+  <path d="M236 360H276V430C276 438.837 268.837 446 260 446H252C243.163 446 236 438.837 236 430V360Z" fill="#F7E7C1"/>
+  <circle cx="176" cy="370" r="12" fill="#E5A24C"/>
+  <circle cx="336" cy="370" r="12" fill="#E5A24C"/>
+  <path d="M205 171C215.995 138.496 236.299 122.177 268.5 117" stroke="#0F2D21" stroke-width="18" stroke-linecap="round"/>
+  <path d="M303 171C292.005 138.496 271.701 122.177 239.5 117" stroke="#0F2D21" stroke-width="18" stroke-linecap="round"/>
+  <path d="M178 131L220 118L208 150L178 131Z" fill="#F3C969"/>
+  <path d="M336 131L294 118L306 150L336 131Z" fill="#F3C969"/>
+  <rect x="125" y="120" width="260" height="34" rx="17" fill="#F7E7C1"/>
+  <path d="M154 114C182.135 102.83 198.397 104.201 209 116" stroke="#E7B964" stroke-width="10" stroke-linecap="round"/>
+  <path d="M356 114C328.864 102.83 312.603 104.201 302 116" stroke="#E7B964" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="410" cy="178" r="28" fill="#E7B964"/>
+  <circle cx="410" cy="178" r="12" fill="#0F2D21"/>
+  <path d="M94 204C86.1797 169.676 59.1587 128.4 39 100" stroke="#E0B268" stroke-width="12" stroke-linecap="round"/>
+  <path d="M418 204C425.82 169.676 452.841 128.4 473 100" stroke="#E0B268" stroke-width="12" stroke-linecap="round"/>
+</svg>

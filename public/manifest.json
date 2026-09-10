@@ -1,0 +1,26 @@
+{
+  "id": "/",
+  "name": "Agrovision AI",
+  "short_name": "Agrovision",
+  "description": "KrishiLink unified agricultural market linkages, live data.gov.in mandi rates, and offline-ready crop intelligence.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fcfbf7",
+  "theme_color": "#123a2b",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "32x32 48x48 72x72 96x96 128x128 256x256",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/ai.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

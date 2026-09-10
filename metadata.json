@@ -1,0 +1,12 @@
+{
+  "name": "Agrovision AI",
+  "description": "KrishiLink unified market linkages, price discovery, AI produce grading, and role-based platform for Farmers, FPOs, Buyers, and Mandi Admins (SIH26132)",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
