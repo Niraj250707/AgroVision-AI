@@ -620,21 +620,12 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 ### 🏆 Code Warriors — SIH 2026
 
 | Role | Name | GitHub |
-|------|------|--------|
-<<<<<<< HEAD
-| 👨‍💻 **Team Lead & Backend** | [Prajapati Nilesh] | [@King Nilesh](https://github.com/NileshHI-coder) |
-| 🎨 **Frontend Lead** | [Name] | [@github](https://github.com/) |
-| 📱 **FullStack Developer** | [Niraj Sharma] | [@github](https://github.com/) |
-| 🤖 **ML/AI Engineer** | [Name] | [@github](https://github.com/) |
-| 📝 **Research & Documentation** | [Name] | [@github](https://github.com/) |
-=======
 | 👨‍💻 **Team Lead & Frontend** | [Prajapati Nilesh] | [@King Nilesh](https://github.com/NileshHI-coder) |
 | 🎨 **Backend Lead** | [Lavya Desai] | [@Lavya](https://github.com/lavyadesai2006-commits) |
 | 📱 **FullStack Developer** | [Niraj Sharma] | [@Niraj250707](https://github.com/Niraj250707) |
-| 🤖 **ML/AI Engineer** | [Yagnika Parmar] | [@Yani1517](https://github.com/Yani1517) |
+| 🤖 **UI/UX Designer** | [Yagnika Parmar] | [@Yani1517](https://github.com/Yani1517) |
 | 📊 **Data & Market Analyst** | [Rudra Patel] | [@Rudra](https://github.com/Rudra2808-wp)| 
 | 📝 **Research & Documentation** | [Farhan Rana] | [@Farhan](https://github.com/farhan7217) |
->>>>>>> 6a4d2c3fefe86d527de1f7e8a4e316f73bb8a9e8
 
 **Mentor:** [MihirKumar Rabari] | **Institution:** [Madhuben and Bhanubhai Patel Institute of Technology]
 
