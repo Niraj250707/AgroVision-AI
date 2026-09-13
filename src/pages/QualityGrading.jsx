@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  Camera,
+  Upload,
   Sparkles,
   ArrowRight,
   BookOpen,
@@ -42,10 +42,10 @@ export default function QualityGrading() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => openGradingModal()}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-harvest-500 hover:bg-harvest-400 text-canopy-950 font-bold text-xs shadow-sm transition-all active:scale-95"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-harvest-500 hover:bg-harvest-400 text-canopy-950 font-bold text-xs shadow-sm transition-all active:scale-95 cursor-pointer"
           >
-            <Camera className="w-4 h-4" />
-            <span>{t("openCamera")}</span>
+            <Upload className="w-4 h-4" />
+            <span>Upload Produce Photo</span>
           </button>
         </div>
       </div>
@@ -56,27 +56,27 @@ export default function QualityGrading() {
           <div className="space-y-1">
             <h2 className="font-display font-bold text-lg text-soil-950">
               {language === "hi"
-                ? "तुरंत फसल की तस्वीर लें या नमूना चुनें"
+                ? "फसल की तस्वीर अपलोड करें और AI ग्रेडिंग जांचें"
                 : language === "mr"
-                ? "शेतमालाचा फोटो काढा किंवा नमुना निवडा"
-                : "Live Camera Inspection & Batch Analysis"}
+                ? "शेतमालाचा फोटो अपलोड करा आणि AI प्रतवारी तपासा"
+                : "Produce Photo Upload & AI Batch Analysis"}
             </h2>
             <p className="text-xs text-soil-600">
               {language === "hi"
-                ? "अपने स्मार्टफोन या वेबकैम से फसल की स्पष्ट फोटो खींचें। AI मॉडल तुरंत रंग, आकार, नमी और दोषों का विश्लेषण करता है।"
+                ? "अपने खेत या भंडारण से फसल की स्पष्ट फोटो अपलोड करें। AI मॉडल तुरंत रंग, आकार, नमी और दोषों का विश्लेषण करता है।"
                 : language === "mr"
-                ? "स्मार्टफोन किंवा वेबकॅमने शेतमालाचा स्पष्ट फोटो काढा. AI रंग, आकार, ओलावा व डागांचे तात्काळ विश्लेषण करते."
-                : "Point camera at produce under natural light. The multimodal Gemini model grades the lot according to APMC parameters."}
+                ? "शेतातील किंवा गोदामातील मालाचा फोटो अपलोड करा. AI रंग, आकार, ओलावा व डागांचे तात्काळ विश्लेषण करते."
+                : "Upload produce photo from your field or warehouse. The multimodal AI model grades the lot according to official APMC parameters."}
             </p>
           </div>
 
           <div className="flex items-center gap-2.5">
             <button
               onClick={() => openGradingModal()}
-              className="px-4 py-2 text-xs font-bold rounded-xl bg-canopy-900 hover:bg-canopy-800 text-white flex items-center gap-1.5 transition-colors shadow-xs"
+              className="px-4 py-2 text-xs font-bold rounded-xl bg-canopy-900 hover:bg-canopy-800 text-white flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer"
             >
-              <Camera className="w-3.5 h-3.5 text-harvest-400" />
-              <span>{t("openCamera")}</span>
+              <Upload className="w-3.5 h-3.5 text-harvest-400" />
+              <span>Upload Photo & Grade</span>
             </button>
           </div>
         </div>

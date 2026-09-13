@@ -1,6 +1,6 @@
 import {
   LayoutDashboard,
-  Camera,
+  Upload,
   Sparkles,
   Package,
   TrendingUp,
@@ -19,7 +19,7 @@ export const navItems = [
   {
     to: "/grading",
     key: "navGradeProduce",
-    icon: Camera,
+    icon: Upload,
     badge: "AI Vision",
   },
   {

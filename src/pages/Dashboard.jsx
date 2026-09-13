@@ -4,7 +4,7 @@ import {
   TrendingUp,
   Package,
   Bell,
-  Camera,
+  Upload,
   ArrowRight,
   ShieldCheck,
   Volume2,
@@ -99,8 +99,8 @@ export default function Dashboard() {
             onClick={() => openGradingModal()}
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-canopy-900 hover:bg-canopy-800 text-white font-bold text-xs shadow-sm transition-all active:scale-95"
           >
-            <Camera className="w-4 h-4 text-harvest-400" />
-            <span>{t("gradeProduceButton")}</span>
+            <Upload className="w-4 h-4 text-harvest-400" />
+            <span>{t("gradeProduceButton") || "Upload & Grade"}</span>
           </button>
         </div>
       </div>

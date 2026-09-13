@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Truck,
   ShieldCheck,
   FileText,
   Printer,
   QrCode,
-  X
+  X,
+  Download,
+  CheckCircle2
 } from "lucide-react";
 import { useApp } from "../store/AppContext";
 import { useLocale } from "../context/LocaleContext";
+import { triggerPrintDocument, downloadDocumentFile } from "../utils/documentExport";
 
 export default function TransportDistance() {
   const { marketPrices, activeCrop, currentUser } = useApp();
@@ -16,6 +19,8 @@ export default function TransportDistance() {
   const [vehicleType, setVehicleType] = useState("tractor"); // tractor | pickup | truck
   const [selectedMandi, setSelectedMandi] = useState(null);
   const [showGatePassModal, setShowGatePassModal] = useState(false);
+  const [savePassSuccess, setSavePassSuccess] = useState(false);
+  const gatePassRef = useRef(null);
 
   // Dynamic voice command listener for vehicle type selection
   useEffect(() => {
@@ -86,6 +91,25 @@ export default function TransportDistance() {
       console.warn("Transport booking saved locally:", e);
     }
     setShowGatePassModal(true);
+  };
+
+  const handlePrintPass = () => {
+    if (gatePassRef.current) {
+      triggerPrintDocument(gatePassRef.current, `APMC_GatePass_${selectedMandi?.mandiName || "Mandi"}_${selectedVehicle.platePrefix}`);
+    } else {
+      window.print();
+    }
+  };
+
+  const handleSavePass = () => {
+    if (!gatePassRef.current || !selectedMandi) return;
+    downloadDocumentFile({
+      filename: `APMC_EPass_${selectedMandi.mandiName.replace(/\s+/g, "_")}_${selectedVehicle.platePrefix}.html`,
+      title: `APMC Mandi Inward Electronic Gate Pass - ${selectedMandi.mandiName}`,
+      contentHtml: gatePassRef.current.innerHTML,
+    });
+    setSavePassSuccess(true);
+    setTimeout(() => setSavePassSuccess(false), 4000);
   };
 
   return (
@@ -224,7 +248,7 @@ export default function TransportDistance() {
               </button>
             </div>
 
-            <div className="p-6 space-y-4 text-xs text-soil-950">
+            <div ref={gatePassRef} className="p-6 space-y-4 text-xs text-soil-950 bg-white">
               {/* Pass Header */}
               <div className="text-center border-b-2 border-soil-800 pb-3">
                 <div className="text-[10px] font-mono uppercase font-bold text-soil-500 tracking-wider">
@@ -301,20 +325,36 @@ export default function TransportDistance() {
                   <span className="text-[10px] text-soil-400">Valid for 24 hours</span>
                 </div>
               </div>
+
+              {savePassSuccess && (
+                <div className="p-2.5 bg-canopy-50 border border-canopy-200 text-canopy-900 rounded-lg text-xs font-semibold flex items-center gap-1.5 animate-fadeIn">
+                  <CheckCircle2 className="w-4 h-4 text-signal-good" />
+                  <span>Gate Pass saved to device! You can show or print it at the APMC gate.</span>
+                </div>
+              )}
             </div>
 
             {/* Modal Bottom Actions */}
-            <div className="px-6 py-3.5 bg-soil-50 border-t border-soil-200 flex items-center justify-between">
-              <button
-                onClick={() => window.print()}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-soil-300 rounded-xl text-xs font-semibold text-soil-800 hover:bg-soil-100"
-              >
-                <Printer className="w-3.5 h-3.5" />
-                <span>Print Gate Pass</span>
-              </button>
+            <div className="px-5 py-3.5 bg-soil-50 border-t border-soil-200 flex flex-wrap items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleSavePass}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-canopy-900 text-white rounded-xl text-xs font-semibold hover:bg-canopy-800 transition-colors shadow-2xs cursor-pointer"
+                >
+                  <Download className="w-3.5 h-3.5 text-harvest-400" />
+                  <span>Save / Download Pass</span>
+                </button>
+                <button
+                  onClick={handlePrintPass}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-soil-300 rounded-xl text-xs font-semibold text-soil-800 hover:bg-soil-100 transition-colors shadow-2xs cursor-pointer"
+                >
+                  <Printer className="w-3.5 h-3.5 text-soil-600" />
+                  <span>Print Gate Pass</span>
+                </button>
+              </div>
               <button
                 onClick={() => setShowGatePassModal(false)}
-                className="px-4 py-2 bg-canopy-900 text-white rounded-xl text-xs font-bold hover:bg-canopy-800"
+                className="px-4 py-1.5 bg-soil-200 text-soil-800 rounded-xl text-xs font-bold hover:bg-soil-300 cursor-pointer"
               >
                 Done
               </button>

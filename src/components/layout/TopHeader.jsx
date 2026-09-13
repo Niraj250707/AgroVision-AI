@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import {
   Search,
   Globe,
-  Camera,
+  Upload,
   Check,
   ChevronDown,
   UserCheck,
@@ -93,7 +93,7 @@ export default function TopHeader({ onMenuClick }) {
     { type: "mandi", title: "Rajkot APMC", sub: "Highest modal rates in Saurashtra", path: "/markets", icon: TrendingUp, keywords: ["rajkot", "રાજકોટ"] },
     { type: "feature", title: "Weather & Rainfall Forecast", sub: "7-Day IMD Agromet & Rain Forecast", path: "/alerts", icon: CloudSun, keywords: ["weather", "rain", "forecast", "हवामान", "હવામાન", "વરસાદ", "alert"] },
     { type: "feature", title: "AI Crop Planting Recommendations", sub: "Soil Health & Seasonal Sowing Engine", path: "/recommendations", icon: Sparkles, keywords: ["recommend", "soil", "sowing", "planting", "વાવણી", "જમીન", "ખાતર"] },
-    { type: "feature", title: "AI Produce Quality Grading", sub: "Instant AGMARK & e-NAM Camera Scan", path: "/grading", icon: Camera, keywords: ["grading", "camera", "quality", "तपासणी", "ગ્રેડિંગ", "કેમેરા"] },
+    { type: "feature", title: "AI Produce Quality Grading", sub: "Instant AGMARK & e-NAM Photo Assay", path: "/grading", icon: Upload, keywords: ["grading", "upload", "photo", "quality", "तपासणी", "ગ્રેડિંગ", "ફોટો"] },
     { type: "feature", title: "WDRA Warehouse Storage Planner", sub: "Pledge loan at 7% on e-NWR receipts", path: "/storage", icon: Warehouse, keywords: ["storage", "warehouse", "enwr", "ગોદામ", "વેરહાઉસ"] },
     { type: "feature", title: "Transport Distance & Gate Pass", sub: "Book tractor/truck and print QR pass", path: "/transport", icon: Truck, keywords: ["transport", "gatepass", "freight", "વાહન", "ભાડું"] },
   ];
@@ -341,15 +341,15 @@ export default function TopHeader({ onMenuClick }) {
         {/* PWA Install Button */}
         <PWAInstallButton />
 
-        {/* Camera Produce Grading Primary CTA */}
+        {/* Photo Upload Produce Grading Primary CTA */}
         <button
           onClick={() => openGradingModal()}
           className="flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 text-xs font-bold rounded-xl bg-canopy-900 hover:bg-canopy-800 text-white shadow-xs transition-all active:scale-95 group"
-          title="Grade produce using AI camera"
+          title="Upload produce photos to grade"
         >
-          <Camera className="w-3.5 h-3.5 text-harvest-400 group-hover:rotate-12 transition-transform" />
-          <span className="hidden md:inline">{t("gradeProduceButton")}</span>
-          <span className="md:hidden">{t("quickScan")}</span>
+          <Upload className="w-3.5 h-3.5 text-harvest-400 group-hover:scale-110 transition-transform" />
+          <span className="hidden md:inline">{t("gradeProduceButton") || "Upload & Grade"}</span>
+          <span className="md:hidden">Upload</span>
         </button>
 
         {/* Interactive Working Notification Center */}

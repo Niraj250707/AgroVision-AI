@@ -107,3 +107,47 @@
   }
 }
 
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  /* Hide navigation, sidebar, floating action buttons, and overlays */
+  nav,
+  aside,
+  header,
+  footer,
+  .no-print,
+  #krishi-mitra-floating-button,
+  #offline-status-banner,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Expand main printable content */
+  main,
+  .printable-area {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* If a specific modal or document is marked for printing */
+  .agrovision-print-target {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    background: #ffffff !important;
+    z-index: 999999 !important;
+    padding: 16px !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
+

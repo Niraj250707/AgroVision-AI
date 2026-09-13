@@ -154,6 +154,7 @@ const inMemoryDb = {
   storageBookings: [] as any[],
   gatePasses: [] as any[],
   gradingRecords: [] as any[],
+  marketplaceDeals: [] as any[],
 };
 
 // Verified Agmarknet Mandi Dataset synced with data.gov.in standard
@@ -837,30 +838,50 @@ app.get("/api/storage/bookings", (_req, res) => {
   res.json({ success: true, bookings: inMemoryDb.storageBookings });
 });
 
-// Real APMC Transport Gate Pass Generation
-app.post("/api/transport/book-gatepass", (req, res) => {
-  const { mandiId, mandiName, vehicleType, driverName, driverPhone, cropType, quantity } = req.body;
+// Real APMC Transport Gate Pass Generation & Booking
+const handleGatePassBooking = (req: any, res: any) => {
+  const { mandiId, mandiName, vehicleType, driverName, driverPhone, cropType, crop, quantity, quantityQtl, farmerId } = req.body;
+  const passNumber = `APMC-EP-${Math.floor(100000 + Math.random() * 900000)}`;
   const gatePass = {
     id: `gp-${Date.now()}`,
-    passNumber: `APMC-EP-${Math.floor(100000 + Math.random() * 900000)}`,
-    mandiId,
+    passNumber,
+    mandiId: mandiId || "mandi-1",
     mandiName: mandiName || "Anand APMC",
     vehicleType: vehicleType || "tractor",
     vehicleNumber: `GJ-23-T-${Math.floor(1000 + Math.random() * 9000)}`,
     driverName: driverName || "Dinesh Bhai Parmar",
     driverPhone: driverPhone || "+91 98251 40192",
-    cropType: cropType || "Cotton",
-    quantity: Number(quantity) || 65,
+    cropType: cropType || crop || "Cotton",
+    quantity: Number(quantity || quantityQtl) || 50,
+    farmerId: farmerId || "farmer-1",
     status: "VALID_FOR_DISPATCH",
     issuedAt: new Date().toISOString(),
     weighbridgeCleared: false,
   };
   inMemoryDb.gatePasses.push(gatePass);
-  res.json({ success: true, gatePass });
-});
+  res.json({ success: true, gatePass, passNumber });
+};
+
+app.post("/api/transport/book-gatepass", handleGatePassBooking);
+app.post("/api/transport/book", handleGatePassBooking);
 
 app.get("/api/transport/gate-passes", (_req, res) => {
   res.json({ success: true, gatePasses: inMemoryDb.gatePasses });
+});
+
+// Marketplace Escrow Deals API
+app.post("/api/marketplace/deals", (req, res) => {
+  const deal = {
+    id: `deal-${Date.now()}`,
+    ...req.body,
+    createdAt: new Date().toISOString(),
+  };
+  inMemoryDb.marketplaceDeals.push(deal);
+  res.json({ success: true, deal });
+});
+
+app.get("/api/marketplace/deals", (_req, res) => {
+  res.json({ success: true, deals: inMemoryDb.marketplaceDeals });
 });
 
 // Jarvis Voice Assistant Command Interpreter Endpoint

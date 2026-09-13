@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import {
   Sparkles,
-  Camera,
+  Upload,
   Volume2,
   VolumeX,
   Building2,
@@ -17,10 +17,13 @@ import {
   Droplets,
   HelpCircle,
   Clock,
-  Wheat
+  Wheat,
+  Lock,
+  Truck
 } from "lucide-react";
 import { useApp } from "../store/AppContext";
 import { generateCropRecommendations, SOIL_PRESETS } from "../services/cropRecommendationService";
+import VerifiedBuyerDealWorkflow from "../components/marketplace/VerifiedBuyerDealWorkflow";
 
 export default function AIRecommendations() {
   const {
@@ -81,6 +84,8 @@ export default function AIRecommendations() {
   const [negotiatingBidId, setNegotiatingBidId] = useState(null);
   const [counterValue, setCounterValue] = useState("");
   const [actionNotice, setActionNotice] = useState("");
+  const [isDealWorkflowOpen, setIsDealWorkflowOpen] = useState(false);
+  const [activeDealBuyerId, setActiveDealBuyerId] = useState(null);
 
   const quantity = Math.max(0, Number(activeCrop?.quantity) || 0);
   const localRate = Math.max(0, Number(activeCrop?.baseMandiPrice) || 0);
@@ -210,7 +215,7 @@ export default function AIRecommendations() {
             onClick={() => openGradingModal()}
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all cursor-pointer"
           >
-            <Camera className="w-4 h-4 text-harvest-400" />
+            <Upload className="w-4 h-4 text-harvest-400" />
             <span>{t("gradeProduceButton")}</span>
           </button>
         </div>
@@ -611,20 +616,34 @@ export default function AIRecommendations() {
             </div>
           </div>
 
-          {/* Institutional Procurement Desk */}
+          {/* Institutional Procurement Desk & Verified Buyer Deal Workflow */}
           <div className="p-5 rounded-2xl bg-white border border-soil-200 shadow-2xs space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-soil-100">
               <div>
-                <h3 className="font-display font-bold text-lg text-emerald-950">
-                  {t("buyerDeskTitle", "Institutional Buyer Procurement Desk")}
-                </h3>
-                <p className="text-xs text-soil-500">
-                  {t("buyerDeskSubtitle", "Direct millers and food processors with guaranteed payment terms")}
+                <div className="flex items-center gap-2">
+                  <h3 className="font-display font-bold text-lg text-emerald-950">
+                    {t("buyerDeskTitle", "Matched Verified Buyers & Institutional Desk")}
+                  </h3>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-signal-good/15 text-signal-good border border-signal-good/30 flex items-center gap-1">
+                    <ShieldCheck className="w-3 h-3" />
+                    AgriEscrow Guaranteed
+                  </span>
+                </div>
+                <p className="text-xs text-soil-500 mt-0.5">
+                  Recommendation → Matched verified buyers → Digital offer/counter-offer → Quality parameters → Escrow hold → Logistics → Payout
                 </p>
               </div>
-              <span className="text-xs font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-xl border border-emerald-200">
-                {buyerBids.length} Active Bids
-              </span>
+
+              <button
+                onClick={() => {
+                  setActiveDealBuyerId(null);
+                  setIsDealWorkflowOpen(true);
+                }}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-canopy-900 hover:bg-canopy-800 text-white font-bold text-xs shadow-xs transition-colors cursor-pointer self-start sm:self-auto"
+              >
+                <Lock className="w-4 h-4 text-harvest-400" />
+                <span>Start Verified Escrow Sale</span>
+              </button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -633,32 +652,79 @@ export default function AIRecommendations() {
                   key={bid.id}
                   className="p-4 rounded-xl border border-soil-200 hover:border-emerald-600 transition-all bg-soil-50/40 flex flex-col justify-between space-y-3"
                 >
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <h4 className="font-bold text-sm text-soil-950">{bid.companyName}</h4>
-                      <p className="text-xs text-soil-500">{bid.crop} • {bid.buyerType}</p>
-                      <span className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1 mt-1">
+                  <div className="space-y-2">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <div className="flex items-center gap-1.5">
+                          <h4 className="font-bold text-sm text-soil-950">{bid.companyName}</h4>
+                          <CheckCircle2 className="w-3.5 h-3.5 text-signal-good shrink-0" />
+                        </div>
+                        <p className="text-xs text-soil-500">{bid.crop} • {bid.buyerType}</p>
+                        <span className="text-[10px] font-mono text-soil-400 block mt-0.5">
+                          Lic #{bid.licenseNumber || "APMC-VERIFIED-2026"}
+                        </span>
+                      </div>
+
+                      {/* Mandatory Buyer Reliability Score */}
+                      <div className="text-right">
+                        <span className="text-[10px] text-soil-400 block uppercase font-bold">Reliability Score</span>
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-signal-good/15 text-signal-good border border-signal-good/30">
+                          <ShieldCheck className="w-3 h-3" />
+                          {bid.reliabilityScore || 98.8}%
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Mandatory Payment History */}
+                    <div className="p-2.5 rounded-lg bg-white border border-soil-200 grid grid-cols-3 gap-2 text-center text-xs">
+                      <div>
+                        <span className="text-[9px] uppercase text-soil-400 block font-bold">Total Volume</span>
+                        <strong className="text-soil-900 text-[11px] font-mono">{bid.paymentHistory?.totalSettledVolume || "₹15+ Cr"}</strong>
+                      </div>
+                      <div>
+                        <span className="text-[9px] uppercase text-soil-400 block font-bold">On-Time DBT</span>
+                        <strong className="text-signal-good text-[11px] font-mono">{bid.paymentHistory?.onTimeSettlementRate || "99.4%"}</strong>
+                      </div>
+                      <div>
+                        <span className="text-[9px] uppercase text-soil-400 block font-bold">Escrow Rate</span>
+                        <strong className="text-emerald-800 text-[11px] font-mono">100% Locked</strong>
+                      </div>
+                    </div>
+
+                    {/* Crop Lifespan & Return Policy Tag */}
+                    <div className="p-2 bg-soil-100/70 rounded-lg text-[11px] text-soil-700 flex items-center justify-between">
+                      <span className="flex items-center gap-1 text-soil-600">
+                        <Clock className="w-3.5 h-3.5 text-harvest-600 shrink-0" />
+                        <span>Return Window:</span>
+                      </span>
+                      <strong className="text-soil-900 font-semibold">
+                        {bid.returnPolicy?.returnWindowHours || 72} Hours ({bid.returnPolicy?.cropType?.split(" ")[0] || bid.crop})
+                      </strong>
+                    </div>
+
+                    <div className="flex items-center justify-between text-xs pt-1">
+                      <span className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
                         <CheckCircle2 className="w-3 h-3 text-signal-good" />
                         {bid.paymentTerms}
                       </span>
-                    </div>
-
-                    <div className="text-right">
-                      <span className="text-[10px] text-soil-400 block uppercase font-bold">Offered Rate</span>
                       <strong className="font-display font-bold text-base text-emerald-900 font-mono">
                         ₹{bid.offeredPricePerQtl}/qtl
                       </strong>
                     </div>
                   </div>
 
-                  <div className="pt-2 border-t border-soil-200 flex items-center justify-between">
+                  <div className="pt-2 border-t border-soil-200 flex items-center justify-between gap-2">
                     <button
-                      onClick={() => acceptBuyerBid(bid.id)}
-                      className="px-3 py-1.5 rounded-lg bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-bold cursor-pointer transition-colors"
+                      onClick={() => {
+                        setActiveDealBuyerId(bid.id);
+                        setIsDealWorkflowOpen(true);
+                      }}
+                      className="px-3.5 py-1.5 rounded-lg bg-canopy-900 hover:bg-canopy-800 text-white text-xs font-bold cursor-pointer transition-colors flex items-center gap-1.5 shadow-2xs"
                     >
-                      {bid.status === "Accepted & Dispatched" ? "Accepted ✓" : "Accept Bid"}
+                      <Lock className="w-3 h-3 text-harvest-400" />
+                      <span>Sell via Escrow</span>
                     </button>
-                    <span className="text-[11px] text-soil-500">{bid.deliveryPoint}</span>
+                    <span className="text-[11px] text-soil-500 truncate max-w-[180px]">{bid.deliveryPoint}</span>
                   </div>
                 </div>
               ))}
@@ -666,6 +732,14 @@ export default function AIRecommendations() {
           </div>
         </div>
       )}
+
+      {/* Verified Buyer Direct Sale Workflow Modal */}
+      <VerifiedBuyerDealWorkflow
+        isOpen={isDealWorkflowOpen}
+        onClose={() => setIsDealWorkflowOpen(false)}
+        initialCrop={activeCrop}
+        initialBuyerId={activeDealBuyerId}
+      />
     </div>
   );
 }

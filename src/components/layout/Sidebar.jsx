@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { X, Camera, Sparkles, ShieldCheck } from "lucide-react";
+import { X, Upload, Sparkles, ShieldCheck } from "lucide-react";
 import { navItems } from "./navConfig";
 import { useApp } from "../../store/AppContext";
 
@@ -58,12 +58,12 @@ export default function Sidebar({ isOpen, onClose }) {
               </div>
               <p className="text-[11px] text-emerald-100 leading-snug">
                 {language === "hi"
-                  ? "कैमरे से फसल की फोटो लें और गुणवत्ता जांचें"
+                  ? "फसल की फोटो अपलोड करें और गुणवत्ता जांचें"
                   : language === "mr"
-                  ? "कॅमेऱ्याने मालाचा फोटो काढून प्रतवारी तपासा"
+                  ? "मालाचा फोटो अपलोड करून प्रतवारी तपासा"
                   : language === "gu"
-                  ? "કેમેરાથી પાકની તસવીર લો અને ગુણવત્તા ચકાસો"
-                  : "Photograph produce to get instant quality grade & mandi price premium."}
+                  ? "પાકની તસવીર અપલોડ કરો અને ગુણવત્તા ચકાસો"
+                  : "Upload produce photos to get instant quality grade & mandi price premium."}
               </p>
               <button
                 onClick={() => {
@@ -72,8 +72,8 @@ export default function Sidebar({ isOpen, onClose }) {
                 }}
                 className="w-full mt-1 py-1.5 px-3 rounded-xl bg-harvest-500 hover:bg-harvest-400 text-emerald-950 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors shadow-sm"
               >
-                <Camera className="w-3.5 h-3.5" />
-                <span>{t("gradeProduceButton")}</span>
+                <Upload className="w-3.5 h-3.5" />
+                <span>{t("gradeProduceButton") || "Upload & Grade"}</span>
               </button>
             </div>
           </div>

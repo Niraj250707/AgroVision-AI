@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   ShieldCheck,
   X,
@@ -7,24 +7,43 @@ import {
   Award,
   FileCheck,
   Sparkles,
-  Info
+  Info,
+  Download,
+  CheckCircle2
 } from "lucide-react";
 import { useApp } from "../../store/AppContext";
+import { triggerPrintDocument, downloadDocumentFile } from "../../utils/documentExport";
 
 export default function QualityCertificateModal() {
   const { activeCertificate, closeCertificate, t, currentUser } = useApp();
   const certRef = useRef(null);
+  const [saveSuccess, setSaveSuccess] = useState(false);
 
   if (!activeCertificate) return null;
-
-  const handlePrint = () => {
-    window.print();
-  };
 
   const lotId = activeCertificate.lotId || `AGM-${(activeCertificate.detectedCrop || "PROD").slice(0, 3).toUpperCase()}-9281`;
   const inspectionDate = activeCertificate.scannedAt
     ? new Date(activeCertificate.scannedAt).toLocaleDateString()
     : new Date().toLocaleDateString();
+
+  const handlePrint = () => {
+    if (certRef.current) {
+      triggerPrintDocument(certRef.current, `AGMARK_Quality_Certificate_${lotId}`);
+    } else {
+      window.print();
+    }
+  };
+
+  const handleSaveCertificate = () => {
+    if (!certRef.current) return;
+    downloadDocumentFile({
+      filename: `Quality_Certificate_${lotId}.html`,
+      title: `AGMARK Quality Certificate - ${lotId}`,
+      contentHtml: certRef.current.innerHTML,
+    });
+    setSaveSuccess(true);
+    setTimeout(() => setSaveSuccess(false), 4000);
+  };
 
   return (
     <div className="fixed inset-0 z-50 bg-soil-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
@@ -36,6 +55,13 @@ export default function QualityCertificateModal() {
             <span>{t("certificateTitle")}</span>
           </div>
           <div className="flex items-center gap-2">
+            <button
+              onClick={handleSaveCertificate}
+              className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold bg-canopy-900 text-white rounded-lg hover:bg-canopy-800 transition-colors shadow-2xs"
+            >
+              <Download className="w-3.5 h-3.5 text-harvest-400" />
+              <span>Save / Download</span>
+            </button>
             <button
               onClick={handlePrint}
               className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold bg-white border border-soil-200 rounded-lg text-soil-800 hover:bg-soil-50 transition-colors"
@@ -52,6 +78,13 @@ export default function QualityCertificateModal() {
             </button>
           </div>
         </div>
+
+        {saveSuccess && (
+          <div className="px-5 py-2 bg-canopy-50 border-b border-canopy-200 text-canopy-900 text-xs font-semibold flex items-center gap-2 animate-fadeIn">
+            <CheckCircle2 className="w-4 h-4 text-signal-good" />
+            <span>AGMARK Quality Certificate saved to your device for offline presentation!</span>
+          </div>
+        )}
 
         {/* Certificate Paper Body */}
         <div ref={certRef} className="p-6 sm:p-8 space-y-6 bg-white text-soil-950">
